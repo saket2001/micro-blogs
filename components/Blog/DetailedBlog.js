@@ -1,5 +1,4 @@
 import styles from "./detailedblog.module.css";
-import image from "../../public/1.jpg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -8,7 +7,6 @@ const DetailedBlog = () => {
   const router = useRouter();
   const blogId = router.query.blogId;
 
-  const isLoading = useSelector((state) => state.isLoading);
   const blogList = useSelector((state) => state.blogList);
 
   const [currentBlog] = blogList.filter((blog) => blog.id === blogId);

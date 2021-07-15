@@ -103,3 +103,36 @@
     background-color: var(--p-btn);
     cursor: pointer;
 }
+
+@media screen and (max-width:600px) {
+    .blog_list {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: auto;
+        grid-gap: 2rem;
+    }
+
+    .blog_head {
+        width: 90%;
+        height: auto;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .blog_head i {
+        font-size: 1.2rem;
+    }
+
+    .blog_head p {
+        padding: 0 0.2rem;
+        font-size: 1rem;
+    }
+
+    .blog_head span {
+        padding: 0 0.1rem;
+        font-size: 1rem;
+        font-weight: 300;
+        align-self: flex-end;
+    }
+
+}

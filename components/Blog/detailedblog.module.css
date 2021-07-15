@@ -23,18 +23,20 @@
     font-size: 2rem;
     padding: 0.3rem 0;
     margin: 0.2rem 0;
+    text-transform: capitalize;
 }
 
 .blog__information {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-transform: capitalize;
 }
 
 .blog__information .blog__info {
     font-size: 1rem;
     font-weight: 300;
-    padding: 0 0.35;
+    padding: 0 0.35rem;
     margin: 0 0.5rem;
 }
 
@@ -48,7 +50,41 @@
     font-size: 1rem;
     letter-spacing: 3px;
     line-height: 1.4rem;
-    padding: 0 0.35;
-    margin: 1rem;
+    padding: 1rem;
+    margin: 0.5rem;
     text-align: justify;
+    /* background-color: #fff; */
+}
+
+@media screen and (max-width:600px) {
+    .blog {
+        width: 100%;
+        padding: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .blog__image div {
+        height: 10rem;
+    }
+
+    .blog__information {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .blog__information .blog__info {
+        width: 100%;
+        display: flex;
+        font-size: 0.9rem;
+        margin: 0.1rem;
+    }
+
+    .blog__description {
+        width: 100%;
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        padding: 0 0.35rem;
+    }
+
 }

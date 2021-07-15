@@ -10,7 +10,13 @@
 .nav__logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0.5rem 0;
+}
+
+.nav__logo i {
+    font-size: 3rem;
+    padding: 0 0.5rem;
 }
 
 .nav__logo p {
@@ -33,4 +39,37 @@
 
 .nav__items .nav__item:hover {
     background-color: #e6e6e6;
+}
+
+@media screen and (max-width:600px) {
+    .nav {
+        width: 100%;
+        flex-direction: column;
+        padding: 0.2rem 0;
+    }
+
+    .nav__logo {
+        padding: 0.3rem 0;
+    }
+
+    .nav__logo i {
+        font-size: 2rem;
+        padding: 0 0.3rem;
+    }
+
+    .nav__logo p {
+        font-size: 0.9rem;
+    }
+
+    .nav__items {
+        padding: 0.2rem 0;
+        margin: 0 0.2rem;
+    }
+
+    .nav__items .nav__item {
+        font-size: 0.9rem;
+        padding: 0.3rem;
+        margin: 0.1rem 0.2rem;
+    }
+
 }

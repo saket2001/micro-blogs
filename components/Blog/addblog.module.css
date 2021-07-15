@@ -61,20 +61,6 @@
     border: 0;
 }
 
-/* .custom_file_upload {
-    padding: 0.35rem 0.6rem;
-    margin: 0.35rem 0;
-    font-size: 1rem;
-    outline: 0;
-    border-radius: 5px;
-    border: 2px solid #ccc;
-    cursor: pointer;
-} */
-
-.form__item input[type="file"] #file-upload-button {
-    background-color: #2e4580;
-}
-
 .form__item textarea {
     resize: none;
 }
@@ -104,4 +90,46 @@
     margin: 0.25rem 0;
     color: var(--s-colour);
     font-weight: 600;
+}
+
+@media screen and (max-width:600px) {
+    .blog_form {
+        width: 90%;
+    }
+
+    .form__head p {
+        font-size: 0.8rem;
+    }
+
+    .form__body {
+        width: 90%;
+        padding: 0.5rem;
+    }
+
+    .form__item label {
+        font-size: 0.9rem;
+    }
+
+    .form__item input[type="text"],
+    .form__item input[type="file"],
+    .form__item textarea {
+        padding: 0.3rem 0.6rem;
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+    }
+
+    .form__item input[type="file"] {
+        border: 0;
+    }
+
+    .form__action {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem 0;
+    }
+
+    .small_text {
+        font-size: 0.8rem;
+    }
 }

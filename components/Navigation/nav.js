@@ -5,8 +5,8 @@ const Nav = () => {
   return (
     <div className={styles.nav}>
       <div className={styles.nav__logo}>
-        <i className="fas fa-blog fa-3x"></i>
-        <p>MicroBlog</p>
+        <i className="fas fa-blog "></i>
+        <p>MicroBlogs</p>
       </div>
       <div className={styles.nav__items}>
         <Link href="/">

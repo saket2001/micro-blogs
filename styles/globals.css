@@ -76,3 +76,9 @@ main {
 .loading p {
   font-size: 2rem;
 }
+
+@media screen and (max-width:600px) {
+  main {
+    min-height: auto;
+  }
+}

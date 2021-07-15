@@ -46,8 +46,6 @@ export async function getStaticProps() {
 
   const data = await response.json();
 
-  console.log(data);
-
   return {
     props: { blogsList: data },
     revalidate: 10,
