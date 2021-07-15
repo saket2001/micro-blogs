@@ -5,10 +5,14 @@ const blogSlice = createSlice({
   initialState: {
     blogList: [],
     isLoading: true,
+    searchedBlog: [],
   },
   reducers: {
     updateBlogs(state, action) {
       state.blogList = [...action.payload];
+    },
+    updateSearchedBlogs(state, action) {
+      state.searchedBlog = [...action.payload];
     },
     toggleLoading(state) {
       state.isLoading = !state.isLoading;

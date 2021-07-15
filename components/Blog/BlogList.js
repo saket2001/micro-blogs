@@ -24,13 +24,6 @@ const BlogList = ({ blogs }) => {
 
   return (
     <Fragment>
-      <div className={styles.blog_head}>
-        <i className="fa fa-quote-left" aria-hidden="true"></i>
-        <p>
-          A reader lives a thousand lives before he dies <span>-Jojen</span>
-        </p>
-        <i className="fa fa-quote-right" aria-hidden="true"></i>
-      </div>
       <div className={styles.blog_list}>{blogList}</div>
     </Fragment>
   );
