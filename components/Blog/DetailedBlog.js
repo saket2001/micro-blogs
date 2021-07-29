@@ -7,9 +7,9 @@ const DetailedBlog = () => {
   const router = useRouter();
   const blogId = router.query.blogId;
 
-  const blogList = useSelector((state) => state.blogList);
+  const blogList = useSelector((state) => state.blog.blogList);
 
-  const [currentBlog] = blogList.filter((blog) => blog.id === blogId);
+  const [currentBlog] = blogList.filter((blog) => blog._id === blogId);
 
   if (!currentBlog) {
     return (
@@ -33,7 +33,9 @@ const DetailedBlog = () => {
       <div className={styles.blog__information}>
         <div className={styles.blog__info}>
           published on -{" "}
-          <span className={styles.highlighted}>{currentBlog.date}</span>
+          <span className={styles.highlighted}>
+            {currentBlog.publishedDate}
+          </span>
         </div>
         <div className={styles.blog__info}>
           Author -{" "}

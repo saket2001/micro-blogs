@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Fragment } from "react";
-import DetailedBlog from "../components/Blog/DetailedBlog";
+import DetailedBlog from "../../components/Blog/DetailedBlog";
 
 const addBlog = () => {
   return (

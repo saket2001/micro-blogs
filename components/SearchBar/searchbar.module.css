@@ -59,7 +59,7 @@
     }
 
     .searchBar input[type='search'] {
-        width: 80%;
+        width: 100%;
         font-size: 0.9rem;
     }
 

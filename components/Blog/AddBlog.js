@@ -1,12 +1,13 @@
 import styles from "./addblog.module.css";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { blogActions } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { blogActions } from "../../store/blog";
 import { useRouter } from "next/router";
-import uuid from "react-uuid";
+// import uuid from "react-uuid";
 
 const AddBlog = () => {
   const router = useRouter();
+  const authorId = useSelector((state) => state.auth.loggedInId);
 
   const dispatch = useDispatch();
   const inputTitle = useRef();
@@ -16,41 +17,46 @@ const AddBlog = () => {
   const inputDescription2 = useRef();
   const inputDescription3 = useRef();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     // collecting data
     const date = Intl.DateTimeFormat("en-us").format(new Date());
 
     const data = {
-      id: uuid(),
-      title: inputTitle.current.value,
-      author: inputAuthor.current.value,
+      title: inputTitle.current.value.toString(),
+      author: inputAuthor.current.value.toString(),
+      authorId: authorId.toString(),
       image:
-        inputImage.current.value ||
+        inputImage.current.value.toString() ||
         "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
       description: {
-        description1: inputDescription1.current.value,
-        description2: inputDescription2.current.value || "",
-        description3: inputDescription3.current.value || "",
+        description1: inputDescription1.current.value.toString(),
+        description2: inputDescription2.current.value.toString() || "",
+        description3: inputDescription3.current.value.toString() || "",
       },
-      date: date,
+      publishedDate: date.toString(),
     };
     // adding to db
 
-    fetch("https://micro-blogs-18b83-default-rtdb.firebaseio.com/blogs.json", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => {
-        res.json();
-      })
-      .then((data) => console.log(data));
+    const res = await fetch(
+      "https://micro-blog-api.herokuapp.com/microblogs/addblog",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
 
-    dispatch(blogActions.addBlog(data));
-    router.push("/");
+    const resData = await res.json();
+    console.log(resData);
+
+    alert(resData.message);
+    if (resData.type) {
+      dispatch(blogActions.addBlog(data));
+      router.push("/");
+    }
   };
 
   return (

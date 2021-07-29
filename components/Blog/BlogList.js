@@ -5,12 +5,12 @@ import BlogItem from "./BlogItem";
 const BlogList = ({ blogs }) => {
   const blogList = blogs.map((blog) => (
     <BlogItem
-      key={blog.id}
-      id={blog.id}
+      key={blog._id}
+      id={blog._id}
       title={blog.title}
       author={blog.author}
       img={blog.image}
-      date={blog.date}
+      date={blog.publishedDate}
       description={blog.description}
     />
   ));

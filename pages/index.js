@@ -1,16 +1,21 @@
 import Head from "next/head";
+import router from "next/router";
 import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import BlogList from "../components/Blog/BlogList";
 import SearchBar from "../components/SearchBar/SearchBar";
-import { blogActions } from "../store";
+import { blogActions } from "../store/blog";
 
 export default function Home(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
+  // for auth state
+  const isLoggedIn = useSelector((state) => state.auth.authStatus);
+  const LoggedInId = useSelector((state) => state.auth.loggedInId);
+  // for blogs
   let isLoading = useSelector((state) => state.isLoading);
-  let newSearchedBlog = useSelector((state) => state.searchedBlog);
-
+  let newSearchedBlog = useSelector((state) => state.blog.searchedBlog);
+  console.log(props.blogsList);
   let blogList = props.blogsList ? Object.values(props.blogsList) : [];
 
   dispatch(blogActions.updateBlogs(blogList));
@@ -47,6 +52,10 @@ export default function Home(props) {
     }
   };
 
+  if (isLoggedIn) {
+    return router.replace("/signin");
+  }
+
   return (
     <Fragment>
       <Head>
@@ -74,7 +83,7 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const response = await fetch(
-    "https://micro-blogs-18b83-default-rtdb.firebaseio.com/blogs.json"
+    "https://micro-blog-api.herokuapp.com/microblogs/allblogs"
   );
 
   const data = await response.json();

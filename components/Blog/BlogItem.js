@@ -16,7 +16,7 @@ const BlogItem = (props) => {
       <div className={styles.blog__button}>
         <button
           onClick={() => {
-            router.push(`/${props.id}`);
+            router.push(`/blog/${props.id}`);
           }}
         >
           View Blog
