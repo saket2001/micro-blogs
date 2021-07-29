@@ -28,6 +28,12 @@ const Nav = () => {
           <Link href="/">
             <a className={styles.nav__item}>Home</a>
           </Link>
+          <Link href="/">
+            <a className={styles.nav__item}>Your Blogs</a>
+          </Link>
+          <Link href="/savedblog">
+            <a className={styles.nav__item}>Saved Blogs</a>
+          </Link>
           <Link href="/addblog" className={styles.nav__item}>
             <a className={styles.nav__item}>Add Blog</a>
           </Link>
@@ -59,9 +65,14 @@ const Nav = () => {
               Add Blog
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/savedblog">
             <a className={styles.nav__item} onClick={menuHandler}>
               Saved Blogs
+            </a>
+          </Link>
+          <Link href="/">
+            <a className={styles.nav__item} onClick={menuHandler}>
+              Your Blogs
             </a>
           </Link>
           <Link href="/signin">

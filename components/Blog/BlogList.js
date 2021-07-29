@@ -2,7 +2,7 @@ import styles from "./blog.module.css";
 import { Fragment } from "react";
 import BlogItem from "./BlogItem";
 
-const BlogList = ({ blogs }) => {
+const BlogList = ({ blogs, isBookmarked }) => {
   const blogList = blogs.map((blog) => (
     <BlogItem
       key={blog._id}
@@ -12,6 +12,7 @@ const BlogList = ({ blogs }) => {
       img={blog.image}
       date={blog.publishedDate}
       description={blog.description}
+      isBookmarked={isBookmarked}
     />
   ));
 

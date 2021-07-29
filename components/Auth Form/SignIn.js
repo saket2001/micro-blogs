@@ -55,7 +55,8 @@ const SignIN = (props) => {
     // sign in
     if (state === "sign-in") {
       const res = await fetch(
-        "https://micro-blog-api.herokuapp.com/user/usersignin",
+        // "https://micro-blog-api.herokuapp.com/user/usersignin",
+        "http://localhost:5000/user/usersignin",
         {
           method: "POST",
           headers: {
@@ -68,11 +69,12 @@ const SignIN = (props) => {
         }
       );
       const data = await res.json();
-
+      console.log(data);
       // if user found
       // if success route to home
       // else error modal
       if (data.type) {
+        //
         dispatch(
           authActions.login({
             id: data.id,

@@ -15,9 +15,9 @@ export default function Home(props) {
   // for blogs
   let isLoading = useSelector((state) => state.isLoading);
   let newSearchedBlog = useSelector((state) => state.blog.searchedBlog);
-  console.log(props.blogsList);
   let blogList = props.blogsList ? Object.values(props.blogsList) : [];
 
+  // updates blogLists
   dispatch(blogActions.updateBlogs(blogList));
 
   isLoading = false;
@@ -74,6 +74,7 @@ export default function Home(props) {
         {!isLoading && (
           <BlogList
             blogs={newSearchedBlog.length > 0 ? newSearchedBlog : blogList}
+            isBookmarked={false}
           />
         )}
       </main>

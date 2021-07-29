@@ -6,6 +6,7 @@ const blogSlice = createSlice({
     blogList: [],
     isLoading: true,
     searchedBlog: [],
+    savedBlogs: [],
   },
   reducers: {
     updateBlogs(state, action) {
@@ -24,6 +25,14 @@ const blogSlice = createSlice({
     removeBlog(state, action) {
       const id = action.payload;
       state.blogList = state.blogList.filter((blog) => blog.id !== id);
+    },
+    updateSavedBlogs(state, action) {
+      state.savedBlogs = [...action.payload];
+      console.log(state.savedBlogs);
+    },
+    saveToFavorites(state, action) {
+      const b_id = action.payload;
+      state.savedBlogs = state.blogList.filter((blog) => blog._id === b_id);
     },
   },
 });

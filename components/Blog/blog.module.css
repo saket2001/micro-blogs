@@ -54,9 +54,18 @@
     font-size: 1rem;
 }
 
+.blog__save__button {
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    background-color: transparent;
+    color: var(--p-btn);
+    cursor: pointer;
+}
+
 .blog__button {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
     margin: 0.5rem 0;
 }
