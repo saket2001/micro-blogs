@@ -28,7 +28,7 @@ const Nav = () => {
           <Link href="/">
             <a className={styles.nav__item}>Home</a>
           </Link>
-          <Link href="/">
+          <Link href="/yourblogs">
             <a className={styles.nav__item}>Your Blogs</a>
           </Link>
           <Link href="/savedblog">
@@ -70,7 +70,7 @@ const Nav = () => {
               Saved Blogs
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/yourblogs">
             <a className={styles.nav__item} onClick={menuHandler}>
               Your Blogs
             </a>

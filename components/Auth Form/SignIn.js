@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth";
 import styles from "../Blog/addblog.module.css";
 
 const SignIN = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
@@ -17,6 +18,8 @@ const SignIN = (props) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    // start loader
+    setIsLoading((prevState) => !prevState);
     //check inputs
     const email = inputEmail.current.value;
     const password = inputPassword.current.value;
@@ -92,80 +95,83 @@ const SignIN = (props) => {
   };
 
   return (
-    <form className={styles.blog_form} onSubmit={submitHandler}>
-      <div className={styles.form__head}>
-        <h1>
-          {state === "sign-in" ? "Welcome Back" : "Welcome Fellow Reader"}
-        </h1>
-        <b> {state === "sign-in" ? "Sign In" : "Sign Up"}</b>
-        <p>
-          {" "}
-          {state === "sign-in"
-            ? "We love seeing you back to read new,lovely blogs"
-            : "Sign up and get ready to read awesome and informative blogs"}
-        </p>
-      </div>
-      <div className={styles.form__body}>
-        {state !== "sign-in" ? (
+    <Fragment>
+      <form className={styles.blog_form} onSubmit={submitHandler}>
+        {isLoading && <div className="loading-spinner"></div>}
+        <div className={styles.form__head}>
+          <h1>
+            {state === "sign-in" ? "Welcome Back" : "Welcome Fellow Reader"}
+          </h1>
+          <b> {state === "sign-in" ? "Sign In" : "Sign Up"}</b>
+          <p>
+            {" "}
+            {state === "sign-in"
+              ? "We love seeing you back to read new,lovely blogs"
+              : "Sign up and get ready to read awesome and informative blogs"}
+          </p>
+        </div>
+        <div className={styles.form__body}>
+          {state !== "sign-in" ? (
+            <div className={styles.form__item}>
+              <label htmlFor="email">Username</label>
+              <input
+                className="form__input"
+                type="text"
+                id="Username"
+                ref={inputName}
+                required
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <div className={styles.form__item}>
-            <label htmlFor="email">Username</label>
+            <label htmlFor="email">Email</label>
             <input
               className="form__input"
-              type="text"
-              id="Username"
-              ref={inputName}
+              type="email"
+              id="email"
+              ref={inputEmail}
               required
             />
           </div>
-        ) : (
-          ""
-        )}
-        <div className={styles.form__item}>
-          <label htmlFor="email">Email</label>
-          <input
-            className="form__input"
-            type="email"
-            id="email"
-            ref={inputEmail}
-            required
-          />
+          <div className={styles.form__item}>
+            <label htmlFor="password">Password</label>
+            <input
+              className="form__input"
+              type="password"
+              id="password"
+              ref={inputPassword}
+              required
+            />
+          </div>
+          <div className={styles.form__action}>
+            <button
+              type="submit"
+              onClick={submitHandler}
+              className={styles.submit_btn}
+            >
+              {state === "sign-in" ? "Sign In" : "Sign Up"}
+            </button>
+          </div>
+          {state === "sign-in" ? (
+            <p>
+              New here ?{" "}
+              <a className={styles.form__link} onClick={changeLink}>
+                Create a new account
+              </a>{" "}
+            </p>
+          ) : (
+            <p>
+              Already a user here?{" "}
+              <a className={styles.form__link} onClick={changeLink}>
+                Sign in
+              </a>{" "}
+            </p>
+          )}
         </div>
-        <div className={styles.form__item}>
-          <label htmlFor="password">Password</label>
-          <input
-            className="form__input"
-            type="password"
-            id="password"
-            ref={inputPassword}
-            required
-          />
-        </div>
-        <div className={styles.form__action}>
-          <button
-            type="submit"
-            onClick={submitHandler}
-            className={styles.submit_btn}
-          >
-            {state === "sign-in" ? "Sign In" : "Sign Up"}
-          </button>
-        </div>
-        {state === "sign-in" ? (
-          <p>
-            New here ?{" "}
-            <a className={styles.form__link} onClick={changeLink}>
-              Create a new account
-            </a>{" "}
-          </p>
-        ) : (
-          <p>
-            Already a user here?{" "}
-            <a className={styles.form__link} onClick={changeLink}>
-              Sign in
-            </a>{" "}
-          </p>
-        )}
-      </div>
-    </form>
+      </form>
+    </Fragment>
   );
 };
 

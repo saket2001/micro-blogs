@@ -1,11 +1,12 @@
 import styles from "./addblog.module.css";
-import { useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { blogActions } from "../../store/blog";
 import { useRouter } from "next/router";
 // import uuid from "react-uuid";
 
 const AddBlog = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const authorId = useSelector((state) => state.auth.loggedInId);
 
@@ -19,6 +20,7 @@ const AddBlog = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading((prevState) => !prevState);
     // collecting data
     const date = Intl.DateTimeFormat("en-us").format(new Date());
 
@@ -38,16 +40,13 @@ const AddBlog = () => {
     };
     // adding to db
 
-    const res = await fetch(
-      "https://micro-blog-api.herokuapp.com/microblogs/addblog",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
+    const res = await fetch("http://localhost:5000/microblogs/addblog", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
 
     const resData = await res.json();
     console.log(resData);
@@ -60,85 +59,91 @@ const AddBlog = () => {
   };
 
   return (
-    <form className={styles.blog_form} onSubmit={submitHandler}>
-      <div className={styles.form__head}>
-        <h1>Add New Blog</h1>
-        <p>We love receiving new blogs from you.</p>
-        <p>Help other by providing them good content to read daily.</p>
-      </div>
-      <div className={styles.form__body}>
-        <div className={styles.form__item}>
-          <label htmlFor="title">Blog Title</label>
-          <input
-            className="form__input"
-            type="text"
-            id="title"
-            ref={inputTitle}
-            required
-          />
-        </div>
-        <div className={styles.form__item}>
-          <label htmlFor="author">Blog Author</label>
-          <input
-            className="form__input"
-            type="text"
-            id="author"
-            ref={inputAuthor}
-            required
-          />
-        </div>
+    <Fragment>
+      {isLoading && <div className="loading-spinner"></div>}
+      {!isLoading && (
+        <form className={styles.blog_form} onSubmit={submitHandler}>
+          <div className={styles.form__head}>
+            <h1>Add New Blog</h1>
+            <p>We love receiving new blogs from you.</p>
+            <p>Help other by providing them good content to read daily.</p>
+          </div>
+          <div className={styles.form__body}>
+            <div className={styles.form__item}>
+              <label htmlFor="title">Blog Title</label>
+              <input
+                className="form__input"
+                type="text"
+                id="title"
+                ref={inputTitle}
+                required
+              />
+            </div>
+            <div className={styles.form__item}>
+              <label htmlFor="author">Blog Author</label>
+              <input
+                className="form__input"
+                type="text"
+                id="author"
+                ref={inputAuthor}
+                required
+              />
+            </div>
 
-        <div className={styles.form__item}>
-          <label htmlFor="description">Blog Description</label>
-          <p className={styles.small_text}>
-            ( Begin new line on new paragraph )
-          </p>
-          <textarea
-            rows="20"
-            cols="50"
-            id="description"
-            aria-expanded="true"
-            placeholder="Paragraph 1"
-            ref={inputDescription1}
-          ></textarea>
-        </div>
-        <div className={styles.form__item}>
-          <textarea
-            rows="20"
-            cols="50"
-            id="description"
-            aria-expanded="true"
-            placeholder="Paragraph 2"
-            ref={inputDescription2}
-          ></textarea>
-        </div>
-        <div className={styles.form__item}>
-          <textarea
-            rows="20"
-            cols="50"
-            id="description"
-            aria-expanded="true"
-            placeholder="Paragraph 3"
-            ref={inputDescription3}
-          ></textarea>
-        </div>
-        <div className={styles.form__item}>
-          <label htmlFor="image">Blog Image</label>
-          <input
-            className="form__input"
-            type="text"
-            id="image"
-            ref={inputImage}
-            placeholder="Image url"
-          />
-        </div>
-        <div className={styles.form__action}>
-          <button type="submit" className={styles.submit_btn}>
-            Submit Blog
-          </button>
-        </div>
-      </div>
-    </form>
+            <div className={styles.form__item}>
+              <label htmlFor="description">Blog Description</label>
+              <p className={styles.small_text}>
+                ( Begin new line on new paragraph )
+              </p>
+              <textarea
+                rows="20"
+                cols="50"
+                id="description"
+                aria-expanded="true"
+                placeholder="Paragraph 1"
+                ref={inputDescription1}
+              ></textarea>
+            </div>
+            <div className={styles.form__item}>
+              <textarea
+                rows="20"
+                cols="50"
+                id="description"
+                aria-expanded="true"
+                placeholder="Paragraph 2"
+                ref={inputDescription2}
+              ></textarea>
+            </div>
+            <div className={styles.form__item}>
+              <textarea
+                rows="20"
+                cols="50"
+                id="description"
+                aria-expanded="true"
+                placeholder="Paragraph 3"
+                ref={inputDescription3}
+              ></textarea>
+            </div>
+            <div className={styles.form__item}>
+              <label htmlFor="image">Blog Image</label>
+              <input
+                className="form__input"
+                type="text"
+                id="image"
+                ref={inputImage}
+                placeholder="Image url"
+              />
+            </div>
+            <div className={styles.form__action}>
+              <button type="submit" className={styles.submit_btn}>
+                Submit Blog
+              </button>
+            </div>
+          </div>
+        </form>
+      )}
+      ;
+    </Fragment>
   );
 };
 

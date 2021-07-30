@@ -7,8 +7,12 @@ const blogSlice = createSlice({
     isLoading: true,
     searchedBlog: [],
     savedBlogs: [],
+    UserBlogs: [],
   },
   reducers: {
+    turnOffLoader(state, action) {
+      state.isLoading = action.payload;
+    },
     updateBlogs(state, action) {
       state.blogList = [...action.payload];
     },
@@ -29,6 +33,10 @@ const blogSlice = createSlice({
     updateSavedBlogs(state, action) {
       state.savedBlogs = [...action.payload];
       console.log(state.savedBlogs);
+    },
+    updateUserBlogs(state, action) {
+      state.UserBlogs = [...action.payload];
+      console.log(state.UserBlogs);
     },
     saveToFavorites(state, action) {
       const b_id = action.payload;

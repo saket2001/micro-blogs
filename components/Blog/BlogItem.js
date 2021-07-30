@@ -35,7 +35,6 @@ const BlogItem = (props) => {
   };
 
   const removeSaveBlogHandler = async (id) => {
-    console.log(id);
     // save in db
     try {
       const res = await fetch(
