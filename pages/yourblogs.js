@@ -12,7 +12,7 @@ const YourBlogsPage = () => {
   console.log(user_id);
   // loads saved blogs from db
   useEffect(() => {
-    fetch("http://localhost:5000/user/getuserblog", {
+    fetch("https://micro-blog-api.herokuapp.com/user/getuserblog", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

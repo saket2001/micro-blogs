@@ -40,13 +40,16 @@ const AddBlog = () => {
     };
     // adding to db
 
-    const res = await fetch("http://localhost:5000/microblogs/addblog", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    const res = await fetch(
+      "https://micro-blog-api.herokuapp.com/microblogs/addblog",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
 
     const resData = await res.json();
     console.log(resData);
