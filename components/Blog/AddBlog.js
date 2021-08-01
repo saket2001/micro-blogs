@@ -145,7 +145,6 @@ const AddBlog = () => {
           </div>
         </form>
       )}
-      ;
     </Fragment>
   );
 };

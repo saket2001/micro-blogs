@@ -42,7 +42,7 @@ const YourBlogsPage = () => {
       <Fragment>
         <h1>No Blogs Created yet</h1>
         <p>
-          Create your first blog now and see who people react to your writing.
+          Create your first blog now and see how people react to your writing.
         </p>
       </Fragment>
     );

@@ -71,6 +71,13 @@ const BlogItem = (props) => {
       <div className={styles.blog__author}>Author- {props.author}</div>
       <div className={styles.blog__date}>Published on- {props.date}</div>
       <div className={styles.blog__button}>
+        <button
+          onClick={() => {
+            router.push(`/blog/${props.id}`);
+          }}
+        >
+          View Blog
+        </button>
         <div className={styles.blog__save__button}>
           {props.isBookmarked && (
             <Image
@@ -95,13 +102,6 @@ const BlogItem = (props) => {
             />
           )}
         </div>
-        <button
-          onClick={() => {
-            router.push(`/blog/${props.id}`);
-          }}
-        >
-          View Blog
-        </button>
       </div>
     </div>
   );

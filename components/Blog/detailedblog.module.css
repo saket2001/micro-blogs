@@ -1,33 +1,55 @@
 .blog {
-    width: 70%;
-    padding: 0.5rem 1rem;
+    width: 80%;
+    padding: 2rem;
+    margin: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #ffffff;
+    border-radius: 5px;
 }
 
-.blog__image {
+.blog__head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    place-items: flex-start;
+    grid-gap: 2rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+}
+
+.blog__head .blog__image {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.blog__image div {
+.blog__head .blog__image div {
+    border-radius: 5px;
     width: 100%;
-    height: 15rem;
+    height: 12rem;
     object-fit: cover;
 }
 
-.blog__title {
+.blog__head div {
     width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog__head div .blog__title {
+    width: 100%;
     font-size: 2rem;
     padding: 0.3rem 0;
     margin: 0.2rem 0;
     text-transform: capitalize;
 }
 
-.blog__information {
+.blog__head div .blog__information {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
@@ -37,23 +59,22 @@
     font-size: 1rem;
     font-weight: 300;
     padding: 0 0.35rem;
-    margin: 0 0.5rem;
+    margin: 0.5rem;
 }
 
 .blog__information .highlighted {
     font-weight: 600;
-    color: var(--s-colour);
+    color: black;
 }
 
 .blog__description {
     width: 100%;
     font-size: 1rem;
-    letter-spacing: 3px;
     line-height: 1.4rem;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     margin: 0.5rem;
     text-align: justify;
-    /* background-color: #fff; */
+    color: #202038;
 }
 
 @media screen and (max-width:600px) {
@@ -64,8 +85,21 @@
         justify-content: flex-start;
     }
 
+    .blog__head {
+        grid-template-columns: 1fr;
+        place-items: flex-start;
+        grid-gap: 0.3rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+
     .blog__image div {
-        height: 10rem;
+        width: 80%;
+        height: 8rem;
+    }
+
+    .blog__head div .blog__title {
+        font-size: 1.5rem;
     }
 
     .blog__information {

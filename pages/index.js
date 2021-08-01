@@ -97,6 +97,6 @@ export async function getStaticProps() {
 
   return {
     props: { blogsList: data },
-    revalidate: 10,
+    revalidate: 2,
   };
 }
