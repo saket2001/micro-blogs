@@ -36,7 +36,7 @@ export default function Home(props) {
 
   const searchBlog = (query) => {
     // turn on loading
-    setIsLoading((prevState) => !prevState);
+    // setIsLoading((prevState) => !prevState);
     setSearchQuery(query);
 
     if (query.length === 0) {
@@ -49,9 +49,8 @@ export default function Home(props) {
           return blog;
         }
       });
+      console.log(newSearchedBlog);
       dispatch(blogActions.updateSearchedBlogs(newSearchedBlog));
-      // turn off loading
-      setIsLoading((prevState) => !prevState);
     }
   };
 

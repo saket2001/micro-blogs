@@ -95,14 +95,13 @@ const SignIN = (props) => {
   };
 
   return (
-    <Fragment>
+    <div className="sign-in">
+      {isLoading && <div className="loading-spinner"></div>}
       <form className={styles.blog_form} onSubmit={submitHandler}>
-        {isLoading && <div className="loading-spinner"></div>}
         <div className={styles.form__head}>
           <h1>
             {state === "sign-in" ? "Welcome Back" : "Welcome Fellow Reader"}
           </h1>
-          <b> {state === "sign-in" ? "Sign In" : "Sign Up"}</b>
           <p>
             {" "}
             {state === "sign-in"
@@ -171,7 +170,7 @@ const SignIN = (props) => {
           )}
         </div>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

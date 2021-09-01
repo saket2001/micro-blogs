@@ -47,13 +47,13 @@ const Nav = () => {
           className={(styles.nav__item, styles.nav__menu__logo)}
           onClick={menuHandler}
         >
-          <Image src={menuImg} alt="" width="40px" height="30px" />
+          <Image src={menuImg} alt="menu logo" width="40px" height="30px" />
         </div>
       </div>
       {showMenu && (
         <div className={styles.menu__nav}>
           <div className={styles.menu__close} onClick={menuHandler}>
-            <Image src={closeImg} alt="" width="45px" height="40px" />
+            <Image src={closeImg} alt="close logo" width="30px" height="30px" />
           </div>
           <Link href="/">
             <a className={styles.nav__item} onClick={menuHandler}>

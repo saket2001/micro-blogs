@@ -12,7 +12,6 @@ const BlogItem = (props) => {
   const router = useRouter();
 
   const saveBlogHandler = async (id) => {
-    console.log(id);
     // save in db
     const res = await fetch(
       " https://micro-blog-api.herokuapp.com/microblogs/savetofavourites",
@@ -64,12 +63,18 @@ const BlogItem = (props) => {
 
   return (
     <div className={styles.blogItem} data-id={props.id}>
+      <div className={styles.blog__head}>
+        <div className={styles.blog__author__img}>{props.author[0]}</div>
+        <div className={styles.blog__author__info}>
+          <div className={styles.blog__author}>{props.author}</div>
+          <div className={styles.blog__date}>{props.date}</div>
+        </div>
+      </div>
       <div className={styles.blog__image}>
         <Image src={props.img} width={350} height={260} alt="some image" />
       </div>
       <div className={styles.blog__title}>{props.title}</div>
-      <div className={styles.blog__author}>Author- {props.author}</div>
-      <div className={styles.blog__date}>Published on- {props.date}</div>
+
       <div className={styles.blog__button}>
         <button
           onClick={() => {
